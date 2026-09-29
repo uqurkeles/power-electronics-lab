@@ -1,0 +1,8 @@
+# Large generated LTspice waveforms; keep selected exports instead
+*.raw
+*.op.raw
+*.log
+
+# Local operating-system files
+Thumbs.db
+.DS_Store
