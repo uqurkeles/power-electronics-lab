@@ -66,3 +66,33 @@ Pending. Keep calculated predictions, simulation results, and bench measurements
 ## Next action
 
 Confirm uncertain values and obtain PWM code and circuit wiring.
+
+## Confirmed by user and supplied code — 2026-10-04
+
+This update supersedes the uncertain transcription above; earlier notes remain for provenance.
+
+- Driver: TC4426, confirmed by user.
+- Inductor: 470 uH, confirmed by user.
+- Output capacitor: 470 uF, confirmed by user.
+- Load: 22 ohm, 5 W, confirmed by user.
+- Arduino code supplied and preserved unchanged in [buck_pwm_20khz](../firmware/buck_pwm_20khz/buck_pwm_20khz.ino).
+- Code configures D9/OC1A, Timer1 Fast PWM mode 14, ICR1=799, OCR1A=400, and prescaler 1.
+- Assuming the classic 16 MHz AVR UNO/Nano indicated in the sketch: nominal frequency = 16,000,000 / (799+1) = 20,000 Hz, period = 50 us, duty approximately 50%. This is code-derived, not scope-verified. The board variant/clock should be confirmed if it is not a classic AVR board.
+- The earlier tentative 50 kHz / 60% setting is superseded. Preserve the original sketch; do not silently change OCR1A for a tiny timer-count difference.
+
+## Baseline predictions, not measurements
+
+For a conventional buck at nominal 12 V input and 50% switch-on duty in continuous conduction with ideal components:
+
+- Output voltage approximately 6 V.
+- Load current approximately 6/22 = 0.273 A.
+- Load power approximately 6^2/22 = 1.64 W.
+- Inductor peak-to-peak ripple approximately (12-6)*25 us/470 uH = 0.319 A; ideal minimum current approximately 0.113 A, consistent with continuous conduction at this operating point.
+
+Actual input at Arduino VIN may differ from adapter rating; real diode, MOSFET, winding, and supply losses are not included in these predictions.
+
+## Remaining step before model creation
+
+Confirm that IRF9540 source connects to VIN, drain to the switch node/inductor, diode cathode (stripe) to the switch node and anode to ground, output capacitor/load from the far end of the inductor to ground, driver output to gate, and all logic/driver references to common ground. Gate resistor/pull-up and driver decoupling values remain unspecified. No exact schematic or simulation has been produced yet.
+
+TC4426 inversion verified against Microchip DS20001422G (Functional Block Diagram), accessed 2026-10-04: https://ww1.microchip.com/downloads/en/DeviceDoc/20001422G.pdf . With the conditional high-side P-channel wiring, Arduino HIGH leads to driver LOW and MOSFET on; Arduino LOW leads to driver HIGH and MOSFET off.

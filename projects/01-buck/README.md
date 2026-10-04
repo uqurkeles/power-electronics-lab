@@ -6,11 +6,11 @@ Recreate the existing bench circuit in LTspice, understand its waveforms, and co
 
 ## Current state
 
-The user has described the bench components and shared 12 V supply. The first experiment now records the reported setup and unresolved transcription details. No LTspice model has been created or tested here.
+The user confirmed TC4426, 470 uH, 470 uF, and a 22 ohm / 5 W load. The supplied Arduino sketch configures nominal 20 kHz PWM at approximately 50% duty on D9 for a classic 16 MHz AVR board. The shared supply is nominally 12 V. No LTspice model has been created or tested here.
 
 ## Next action
 
-Confirm the PWM code, inductor value/unit, driver marking, and switching-node wiring. The assistant maintains the documentation from this evidence.
+Confirm the source/drain, diode orientation, gate connection, and common-ground wiring; then create the LTspice baseline. The assistant maintains the documentation from this evidence.
 
 ## First experiment
 
@@ -18,6 +18,7 @@ Confirm the PWM code, inductor value/unit, driver marking, and switching-node wi
 
 ## Files
 
+- `firmware/`: original Arduino PWM sketch supplied by the user.
 - `simulation/`: LTspice source files, selected exports, and model provenance.
 - `hardware/`: circuit photos, wiring sketches, and build changes.
 - `experiments/`: settings, evidence, comparisons, and conclusions for each experiment.
