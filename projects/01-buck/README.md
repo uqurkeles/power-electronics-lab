@@ -6,11 +6,13 @@ Recreate the existing bench circuit in LTspice, understand its waveforms, and co
 
 ## Current state
 
-The user confirmed TC4426, 470 uH, 470 uF, and a 22 ohm / 5 W load. The supplied Arduino sketch configures nominal 20 kHz PWM at approximately 50% duty on D9 for a classic 16 MHz AVR board. The shared supply is nominally 12 V. No LTspice model has been created or tested here.
+The user confirmed TC4426, 470 uH, 470 uF, and a 22 ohm / 5 W load. The supplied Arduino sketch configures nominal 20 kHz PWM at approximately 50% duty on D9 for a classic 16 MHz AVR board. The shared supply is nominally 12 V.
+
+A first LTspice schematic and waveform screenshot has been supplied. It uses a temporary IRF7343P model, 47 uH, and 5 ohm; these differ from the hardware. Its output staying near 11.43 V strongly suggests reversed MOSFET source/drain and body-diode conduction, pending the user's .asc/netlist. See [first draft review](experiments/2026-10-05-first-ltspice-review.md).
 
 ## Next action
 
-Confirm the source/drain, diode orientation, gate connection, and common-ground wiring; then create the LTspice baseline. The assistant maintains the documentation from this evidence.
+Verify and correct the P-channel source/drain connections, set L=470u and load=22, then rerun and inspect output, switch node, gate-to-source voltage, and inductor current. Supply the .asc file to verify the exact wiring. The assistant maintains the documentation from this evidence.
 
 ## First experiment
 
@@ -28,4 +30,4 @@ Confirm the source/drain, diode orientation, gate connection, and common-ground 
 
 Confirm the circuit → establish a baseline simulation → include real component behavior → compare with bench evidence → investigate one difference at a time.
 
-Simulation scope and settings will be chosen after the existing circuit is documented. Closed-loop control remains a later project.
+Closed-loop control remains a later project.
