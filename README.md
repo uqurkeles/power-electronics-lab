@@ -17,10 +17,15 @@ Evidence belongs beside the experiment that produced it. A screenshot alone is u
 ## Contents
 
 - `projects/01-buck/`: existing buck circuit, simulations, hardware evidence, and experiments.
+- `projects/02-boost/`: initial boost bench/simulation comparison and open questions.
 - `references/`: source links and references used in the projects.
 - `AGENTS.md`: instructions for assistants maintaining this workspace.
 
-One experiment at a time. Create more project folders only when another project starts.
+## Current learning step (2026-10-16)
+
+Initial buck and boost practical passes have been carried out. The boost result is recorded in [EXP-002](projects/02-boost/experiments/EXP-002-boost-comparison.md): qualitative comparison and an approximate 20 V output ceiling as duty was changed; cause still unverified. Inductor/load sweeps are intentionally deferred.
+
+**Next action:** continue the course lesson following the boost experiment; write one prediction, compare theory/LTspice with a waveform or output measurement, record one conclusion, and proceed. Do not treat preliminary comparisons as full validation.
 
 ## Repository
 
